@@ -1,0 +1,1269 @@
+* {
+  color: black;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-family: "signika negative", sans-serif;
+}
+.container {
+  height: 100%;
+}
+.titlebar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  background-color: #8b9ba9;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 240px;
+  height: 100%;
+  background-color: #3998ff;
+  border-radius: 20px;
+  border: 5px solid black;
+  margin-left: 10px;
+}
+.sidebar li {
+  font-size: 22px;
+  padding: 5px;
+  margin: 10px;
+}
+.icon {
+  font-size: xx-small;
+  color: azure;
+}
+.titlebar .signout {
+  position: fixed;
+  right: 10px;
+  font-size: larger;
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  transition: 0.4s;
+  font-size: 22px;
+}
+.bg-primary {
+  height: 70px;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+  border-bottom: 5px solid black;
+  background-color: #255f92;
+}
+
+.titlebar nav {
+  background-color: #0964b4;
+  text-align: center;
+}
+nav span {
+  margin-left: 26px;
+}
+nav img {
+  margin-left: 10px;
+}
+.sidebar ul li button {
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  display: block;
+  height: 50px;
+  width: 100%;
+  line-height: 30px;
+  padding-left: 20px;
+  text-align: left;
+  box-sizing: border-box;
+  border-bottom: 2px solid #a9c8fd;
+  transition: 0.4s;
+  color: azure;
+}
+.sidebar ul li i {
+  transition: 0.4s;
+}
+
+li:is(:hover, .active) button {
+  color: rgb(0, 0, 0);
+  margin-left: 20px;
+}
+li:is(:hover, .active) i {
+  color: azure;
+}
+.titlebar button:hover {
+  color: azure;
+}
+.sidebar i {
+  margin-left: 10px;
+}
+.badge {
+  margin-left: 30px;
+  padding: 2px;
+  width: 30px;
+  height: 20px;
+  position: fixed;
+}
+.w3-modal .w3-modal-content .w3-container i:hover {
+  color: white;
+  padding-right: 5px;
+}
+.w3-modal {
+  border: 4px solid black;
+  margin-top: 0;
+  border-radius: 30px;
+  width: fit-content;
+  position: relative;
+  margin-top: 0px;
+  background-color: #d1e0ff;
+}
+.w3-container {
+  background-color: #6c757d;
+  border-bottom: 4px solid black;
+}
+.w3-container span:hover {
+  cursor: pointer;
+}
+.w3-container h2 {
+  padding: 10px;
+  color: azure;
+}
+.w3-panel {
+  background-color: #e8f0ff;
+}
+.w3-panel label {
+  margin-top: 0px;
+  margin-left: 20px;
+  font-size: 18px;
+}
+.w3-panel .w3-input {
+  margin-left: 20px;
+  border: 3px solid black;
+  width: 800px;
+
+  padding-left: 10px;
+  font-size: 20px;
+}
+.w3-panel .messagebox {
+  margin-left: 20px;
+  border: 3px solid black;
+  width: 800px;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 20px;
+  margin: 20px;
+  height: 100px;
+}
+.w3-section i {
+  color: azure;
+}
+
+.w3-section .draft {
+  position: relative;
+  left: 40px;
+  width: 120px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+.w3-section .attach {
+  margin-left: 200px;
+  width: 135px;
+  height: 50px;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+.w3-section .send {
+  position: relative;
+  margin-left: 20px;
+  width: 100px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+* {
+  color: black;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-family: "signika negative", sans-serif;
+}
+.container {
+  height: 100%;
+}
+.titlebar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  background-color: #8b9ba9;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 240px;
+  height: 100%;
+  background-color: #3998ff;
+  border-radius: 20px;
+  border: 5px solid black;
+  margin-left: 10px;
+}
+.sidebar li {
+  font-size: 22px;
+  padding: 5px;
+  margin: 10px;
+}
+.icon {
+  font-size: xx-small;
+  color: azure;
+}
+.titlebar .signout {
+  position: fixed;
+  right: 10px;
+  font-size: larger;
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  transition: 0.4s;
+  font-size: 22px;
+}
+.bg-primary {
+  height: 70px;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+  border-bottom: 5px solid black;
+  background-color: #255f92;
+}
+
+.titlebar nav {
+  background-color: #0964b4;
+  text-align: center;
+}
+nav span {
+  margin-left: 26px;
+}
+nav img {
+  margin-left: 10px;
+}
+.sidebar ul li button {
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  display: block;
+  height: 50px;
+  width: 100%;
+  line-height: 30px;
+  padding-left: 20px;
+  text-align: left;
+  box-sizing: border-box;
+  border-bottom: 2px solid #a9c8fd;
+  transition: 0.4s;
+  color: azure;
+}
+.sidebar ul li i {
+  transition: 0.4s;
+}
+
+li:is(:hover, .active) button {
+  color: rgb(0, 0, 0);
+  margin-left: 20px;
+}
+li:is(:hover, .active) i {
+  color: azure;
+}
+.titlebar button:hover {
+  color: azure;
+}
+.sidebar i {
+  margin-left: 10px;
+}
+.badge {
+  margin-left: 30px;
+  padding: 2px;
+  width: 30px;
+  height: 20px;
+  position: fixed;
+}
+.w3-modal .w3-modal-content .w3-container i:hover {
+  color: white;
+  padding-right: 5px;
+}
+.w3-modal {
+  border: 4px solid black;
+  margin-top: 0;
+  border-radius: 30px;
+  width: fit-content;
+  position: relative;
+  margin-top: 0px;
+  background-color: #d1e0ff;
+}
+.w3-container {
+  background-color: #6c757d;
+  border-bottom: 4px solid black;
+}
+.w3-container span:hover {
+  cursor: pointer;
+}
+.w3-container h2 {
+  padding: 10px;
+  color: azure;
+}
+.w3-panel {
+  background-color: #e8f0ff;
+}
+.w3-panel label {
+  margin-top: 0px;
+  margin-left: 20px;
+  font-size: 18px;
+}
+.w3-panel .w3-input {
+  margin-left: 20px;
+  border: 3px solid black;
+  width: 800px;
+
+  padding-left: 10px;
+  font-size: 20px;
+}
+.w3-panel .messagebox {
+  margin-left: 20px;
+  border: 3px solid black;
+  width: 800px;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 20px;
+  margin: 20px;
+  height: 100px;
+}
+.w3-section i {
+  color: azure;
+}
+
+.w3-section .draft {
+  position: relative;
+  left: 40px;
+  width: 120px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+.w3-section .attach {
+  margin-left: 200px;
+  width: 135px;
+  height: 50px;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+.w3-section .send {
+  position: relative;
+  margin-left: 20px;
+  width: 100px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+* {
+  color: black;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-family: "signika negative", sans-serif;
+}
+.container {
+  height: 100%;
+}
+.titlebar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  background-color: #8b9ba9;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 240px;
+  height: 100%;
+  background-color: #3998ff;
+  border-radius: 20px;
+  border: 5px solid black;
+  margin-left: 10px;
+}
+.sidebar li {
+  font-size: 22px;
+  padding: 5px;
+  margin: 10px;
+}
+.icon {
+  font-size: xx-small;
+  color: azure;
+}
+.titlebar .signout {
+  position: fixed;
+  right: 10px;
+  font-size: larger;
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  transition: 0.4s;
+  font-size: 22px;
+}
+.bg-primary {
+  height: 70px;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+  border-bottom: 5px solid black;
+  background-color: #255f92;
+}
+
+.titlebar nav {
+  background-color: #0964b4;
+  text-align: center;
+}
+nav span {
+  margin-left: 26px;
+}
+nav img {
+  margin-left: 10px;
+}
+.sidebar ul li button {
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  display: block;
+  height: 50px;
+  width: 100%;
+  line-height: 30px;
+  padding-left: 20px;
+  text-align: left;
+  box-sizing: border-box;
+  border-bottom: 2px solid #a9c8fd;
+  transition: 0.4s;
+  color: azure;
+}
+.sidebar ul li i {
+  transition: 0.4s;
+}
+
+li:is(:hover, .active) button {
+  color: rgb(0, 0, 0);
+  margin-left: 20px;
+}
+li:is(:hover, .active) i {
+  color: azure;
+}
+.titlebar button:hover {
+  color: azure;
+}
+.sidebar i {
+  margin-left: 10px;
+}
+.badge {
+  margin-left: 30px;
+  padding: 2px;
+  width: 30px;
+  height: 20px;
+  position: fixed;
+}
+.w3-modal .w3-modal-content .w3-container i:hover {
+  color: white;
+  padding-right: 5px;
+}
+.w3-modal {
+  border: 4px solid black;
+  margin-top: 0;
+  border-radius: 30px;
+  width: fit-content;
+  position: relative;
+  margin-top: 0px;
+  background-color: #d1e0ff;
+}
+.w3-container {
+  background-color: #6c757d;
+  border-bottom: 4px solid black;
+}
+.w3-container span:hover {
+  cursor: pointer;
+}
+.w3-container h2 {
+  padding: 10px;
+  color: azure;
+}
+.w3-panel {
+  background-color: #e8f0ff;
+}
+.w3-panel label {
+  margin-top: 0px;
+  margin-left: 20px;
+  font-size: 18px;
+}
+.w3-panel .w3-input {
+  margin-left: 20px;
+  border: 3px solid black;
+  width: 800px;
+
+  padding-left: 10px;
+  font-size: 20px;
+}
+.w3-panel .messagebox {
+  margin-left: 20px;
+  border: 3px solid black;
+  width: 800px;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 20px;
+  margin: 20px;
+  height: 150px;
+}
+.w3-section i {
+  color: azure;
+}
+
+.w3-section .draft {
+  position: relative;
+  left: 40px;
+  width: 120px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+.w3-section .attach {
+  margin-left: 200px;
+  width: 135px;
+  height: 50px;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+.w3-section .send {
+  position: relative;
+  margin-left: 20px;
+  width: 100px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0;
+}
+* {
+  color: black;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-family: "signika negative", sans-serif;
+}
+.container {
+  height: 100%;
+}
+.titlebar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 240px;
+  height: 100%;
+  background-color: rgba(0, 123, 255, 0.8);
+  border-radius: 20px;
+  border: 5px solid black;
+  margin-left: 10px;
+}
+.sidebar li {
+  font-size: 20px;
+  padding: 5px;
+  margin: 10px;
+}
+.icon {
+  font-size: xx-small;
+  color: azure;
+}
+.titlebar .signout {
+  position: fixed;
+  right: 10px;
+  font-size: larger;
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  transition: 0.4s;
+  font-size: 22px;
+  color: azure;
+}
+.titlebar .signout:hover {
+  padding: 20px;
+}
+.titlebar .setting {
+  position: fixed;
+  right: 40px;
+  font-size: larger;
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  transition: 0.4s;
+  font-size: 22px;
+  color: azure;
+  transition: 0.4s;
+}
+.titlebar .setting:hover {
+  padding: 20px;
+}
+.titlebar i {
+  margin-left: 8px;
+  transition: 0.4s;
+}
+.titlebar button:is(:hover) i {
+  color: azure;
+}
+.bg-primary {
+  height: 70px;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+  border-bottom: 5px solid black;
+  background-color: #255f92;
+}
+
+.d-flex input {
+  font-size: 22px;
+  padding-left: 5px;
+  border: 4px solid black;
+  width: 300px;
+}
+.d-flex button {
+  padding: 5px;
+  color: azure;
+}
+.titlebar nav {
+  background-color: #0964b4;
+  text-align: center;
+}
+nav span {
+  margin-left: 26px;
+}
+nav img {
+  margin-left: 10px;
+}
+.sidebar ul li button {
+  border: none;
+  border-style: none;
+  outline: none;
+  background: none;
+  display: block;
+  height: 50px;
+  width: 100%;
+  line-height: 30px;
+  padding-left: 20px;
+  text-align: left;
+  box-sizing: border-box;
+  border-bottom: 2px solid #a9c8fd;
+  transition: 0.4s;
+  color: azure;
+}
+.newmessage {
+  margin-bottom: 0px;
+
+  border-radius: 30px;
+  transition: 0.4s;
+  background-color: #343a40;
+}
+#newmessage {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border: none;
+  transition: 0.4s;
+}
+.newmessage:is(:hover, .active) {
+  margin: 15px;
+}
+
+.sidebar ul li i {
+  transition: 0.4s;
+}
+
+li:is(:hover, .active) button {
+  color: rgb(0, 0, 0);
+  margin-left: 25px;
+}
+li:is(:hover, .active) #newmessage {
+  margin-left: 0px;
+  cursor: pointer;
+}
+li:is(:hover, .active) i {
+  color: azure;
+}
+.titlebar button:hover {
+  color: azure;
+}
+.sidebar i {
+  margin-left: 10px;
+}
+.badge {
+  margin-left: 30px;
+  padding: 2px;
+  width: 30px;
+  height: 20px;
+  position: fixed;
+}
+.w3-modal .w3-modal-content .w3-container i:hover {
+  color: white;
+  padding-right: 5px;
+}
+.w3-modal {
+  border: 4px solid black;
+  border-radius: 30px;
+  width: fit-content;
+  position: relative;
+  background-color: #d1e0ff;
+}
+.w3-container {
+  background-color: #8ecaff;
+
+  border-bottom: 4px solid black;
+}
+.w3-container span:hover {
+  cursor: pointer;
+}
+.w3-container h2 {
+  padding: 10px;
+  color: azure;
+  color: black;
+}
+.w3-panel {
+  background-color: #000000;
+}
+.w3-panel label {
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 18px;
+  color: azure;
+}
+.w3-panel .w3-input {
+  margin-left: 20px;
+  width: 800px;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 18px;
+}
+.w3-panel .messagebox {
+  margin-left: 20px;
+  width: 800px;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 18px;
+  margin: 20px;
+  height: 100px;
+}
+.w3-section {
+  display: flex;
+  flex-direction: row;
+}
+.w3-section i {
+  color: azure;
+}
+.w3-section button {
+  color: azure;
+  padding: 10px;
+}
+.w3-section .draft {
+  position: relative;
+  left: 40px;
+}
+
+.w3-section .attach {
+  margin-left: 20px;
+}
+#check {
+  margin-left: 30px;
+  width: 16px;
+  height: 16px;
+}
+input[type="file"] {
+  color: azure;
+}
+.w3-section .file {
+  padding: 9px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.w3-panel .choosefile {
+  display: flex;
+  flex-direction: column;
+  margin-left: 150px;
+}
+.main {
+  border: 4px solid black;
+  position: fixed;
+  left: 270px;
+  top: 80px;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.form-check-label {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  accent-color: black;
+  color: #343a40;
+}
+input[type="radio"]:checked {
+  background-color: #343a40;
+  accent-color: #007bff;
+}
+.fa-filter {
+  font-size: 34px;
+  margin-left: 10px;
+  color: #343a40;
+}
+.priorities {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  width: fit-content;
+}
+.priorities label {
+  font-size: 14px;
+  margin-left: 20px;
+  margin-top: 0;
+}
+.main {
+  overflow-y: scroll;
+  overflow-x: scroll;
+  height: 100%;
+}
+
+.main table {
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+.main .table th {
+  color: azure;
+  position: sticky;
+}
+tbody td {
+  color: azure;
+}
+tbody i {
+  color: azure;
+}
+.prioritycol {
+  width: 80px;
+}
+.contentcol {
+  width: 300px;
+}
+.sendercol {
+  width: 250px;
+}
+.recievercol {
+  width: 250px;
+}
+.subjectcol {
+  width: 150px;
+}
+.datecol {
+  width: 100px;
+}
+.selectcol {
+  width: 140px;
+}
+.trashcol {
+  width: 50px;
+}
+.downloadcol{
+  width: 100px;
+}
+.namecol {
+  width: 200px;
+}
+.emailcol {
+  width: 250px;
+}
+.remove-contact-col {
+  width: 50px;
+}
+.table .download{
+  color: rgb(57, 146, 255);
+}
+.table .goldfolder {
+  margin-left: 20px;
+  color: rgb(255, 217, 0);
+  font-size: 20px;
+}
+.table .redtrash {
+  margin-left: 40px;
+  color: rgb(255, 90, 90);
+  font-size: 20px;
+}
+.table .greencontact {
+  margin-left: 20px;
+  color: rgb(0, 255, 242);
+  font-size: 20px;
+}
+.table .whiteedit {
+  margin-left: 20px;
+  color: azure;
+  font-size: 20px;
+}
+.table .bluemsg {
+  margin-left: 20px;
+  color: #449eff;
+  font-size: 20px;
+}
+.table input {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+}
+.table input:hover {
+  cursor: pointer;
+}
+table tbody {
+  overflow-y: scroll;
+}
+.searching-sorting-filter {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-left: 0px;
+}
+.d-flex input {
+  font-size: 18px;
+  padding-left: 5px;
+  border: 3px solid black;
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+}
+.searching-sorting-filter-button {
+  color: azure;
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+}
+.selectdropdown {
+  font-size: 18px;
+  padding-left: 5px;
+  border: 3px solid black;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+.searchdiv {
+  margin-left: 0px;
+}
+.sortdiv {
+  margin-left: 80px;
+}
+.filterdiv {
+  margin-left: 80px;
+}
+.searching-sorting-filter i {
+  color: azure;
+  font-size: 20px;
+  margin-left: 5px;
+}
+.priorities input[type="radio"]:checked {
+  background-color: #007bff;
+  accent-color: #007bff;
+}
+.tables input[type="checkbox"]:checked {
+  background-color: #007bff;
+  accent-color: #007bff;
+}
+.deleteall {
+  margin-left: 70px;
+  margin-top: 0;
+}
+.deleteall i {
+  font-size: 34px;
+  color: rgb(255, 90, 90);
+  margin: 0;
+}
+.deleteall button {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+.d-flex {
+  margin-left: 40px;
+}
+.sidebar ul li button span {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  margin-left: 30px;
+}
+.add-to-contacts-button {
+  font-size: 18px;
+  color: azure;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#id02 .w3-modal {
+  width: 500px;
+  height: 500px;
+}
+#id02 .w3-modal-content {
+  width: 500px;
+}
+#id02 .w3-padding {
+  height: 100px;
+}
+#id02 input {
+  width: 400px;
+  padding: 5px;
+  padding-left: 10px;
+}
+#id02 .w3-panel {
+  background-color: #000000;
+  height: 300px;
+}
+
+#id03 .w3-modal {
+  width: 500px;
+  height: 500px;
+  border: 15px solid black;
+}
+#id03 .w3-modal-content {
+  width: 500px;
+}
+#id03 .w3-padding {
+  height: 100px;
+}
+#id03 input {
+  width: 400px;
+  padding: 5px;
+  padding-left: 10px;
+}
+#id03 .w3-panel {
+  background-color: #000000;
+  height: 250px;
+}
+
+#id05 .w3-modal {
+  width: 500px;
+  height: 500px;
+  border: 15px solid black;
+}
+#id05 .w3-modal-content {
+  width: 500px;
+}
+#id05 .w3-padding {
+  height: 100px;
+}
+#id05 input {
+  width: 300px;
+  padding: 5px;
+  padding-left: 10px;
+}
+#id05 .w3-panel {
+  background-color: #000000;
+  height: 400px;
+}
+#id05 label {
+  margin-top: 20px;
+}
+#choosefolder {
+  width: 300px;
+  margin-left: 20px;
+}
+#foldername {
+  width: 300px;
+}
+.choosefolders {
+  display: flex;
+  flex-direction: column;
+}
+.choosefolders button {
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 150px;
+  padding: 10px;
+}
+.foldersdiv {
+  align-content: center;
+  justify-content: center;
+}
+.folderlabel {
+  font-size: 30px;
+  font-weight: 900;
+  color: rgb(0, 0, 0);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  padding-left: 40px;
+}
+.foldersdiv table {
+  margin: 0px;
+}
+#id06 .w3-modal {
+  width: 400px;
+  height: 500px;
+}
+#id06 .w3-modal-content {
+  width: 400px;
+}
+#id06 .w3-padding {
+  height: 100px;
+}
+#id06 input {
+  margin-top: 30px;
+  width: 300px;
+  padding: 5px;
+  padding-left: 10px;
+}
+#id06 button {
+  margin-top: 30px;
+}
+#id06 .w3-panel {
+  background-color: #000000;
+  height: 300px;
+}
+.refresh {
+  color: azure;
+  padding: auto;
+  width: 50px;
+  height: 40px;
+  margin-left: 20px;
+  padding-right: 8px;
+  padding-top: 4px;
+}
+.foldersdiv label i {
+  margin-left: 30px;
+  font-size: 30px;
+  color: rgb(200, 0, 0);
+}
+.newfolderformclass {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.newfolderformclass label {
+  color: azure;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.newfolderformclass input {
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 15px;
+
+  margin-bottom: 30px;
+}
+.newfolderbuttonclass {
+  margin-top: 40px;
+}
+
+#id07 .w3-modal {
+  width: 400px;
+  height: 300px;
+  border: 15px solid black;
+}
+#id07 .w3-modal-content {
+  width: 400px;
+}
+#id07 .w3-padding {
+  height: 100px;
+}
+#id07 input {
+  width: 300px;
+  padding: 5px;
+  padding-left: 10px;
+}
+#id07 .w3-panel {
+  background-color: #000000;
+  height: 200px;
+}
+#id01 input {
+  padding: 5px;
+  padding-left: 10px;
+}
+
+
+
+#id08 .w3-modal {
+  width: 500px;
+  height: 300px;
+  border: 15px solid black;
+}
+#id08 .w3-modal-content {
+  width: 500px;
+}
+#id08 .w3-padding {
+  height: 100px;
+}
+#id08 input {
+  width: 400px;
+  padding: 5px;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+#id08 label {
+ 
+  margin-top: 20px;
+}
+#id08 .w3-panel {
+  background-color: #000000;
+  height: 230px;
+}
+.download:hover{
+  color:#343a40;
+}
+

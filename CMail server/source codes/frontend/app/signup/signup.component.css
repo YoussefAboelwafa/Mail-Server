@@ -1,0 +1,94 @@
+h1 {
+  align-items: center;
+  justify-content: center;
+  flex: content;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: 40px;
+}
+.btn-outline-dark {
+  font-family: "Signika Negative", sans-serif;
+  font-weight: bolder;
+}
+.container {
+  background-color:rgba(91, 170, 255,0.8);
+  width: 1000px;
+  height: 600px;
+  justify-content: left;
+  align-items: left;
+  margin-top: 0px;
+  border-radius: 30px;
+  border: 5px solid black;
+  margin-top: 40px;
+  font-family: "signika negative", sans-serif;
+  font-size: 24px;
+}
+
+.signup input {
+  width: 320px;
+  border-radius: 10px;
+  padding: 4px;
+  font-size: 20px;
+  font-weight: 100;
+  border-color: black;
+  margin-top: 4px;
+}
+
+.btn1 {
+  display: flex;
+  margin-left: 70px;
+  margin-top: 20px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 200px;
+  font-size: large;
+  height: 50px;
+}
+
+.signup {
+  margin: 0px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.container .back {
+  margin-top: 10px;
+  margin-bottom: 0%;
+  outline: none;
+  background: none;
+  border: none;
+}
+.terms #check {
+  width: 50px;
+  font-size: 20px;
+  font-weight: 100;
+  border: 2px solid black;
+}
+.signup .terms {
+  margin-top: 30px;
+  margin-left: 0px;
+}
+.signup .terms input {
+  width: 12px;
+  height: 15px;
+  color: black;
+  background-color: black;
+  border: 2px solid black;
+}
+td label {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0px;
+}
+
+.terms input:hover {
+  background-color: black;
+  color: black;
+}
+h1 img {
+  margin-left: 10px;
+}
+input[type="checkbox"]:checked {
+  background-color: black;
+  accent-color: black;
+}

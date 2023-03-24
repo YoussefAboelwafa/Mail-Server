@@ -1,0 +1,46 @@
+<div class="login">
+  <div action="">
+    <span class="spantitle" style="color: azure; font-size: 38px"
+          ><span style="color: black; font-size: 38px">C</span>-Mail<img
+            src="assets/icons/gmaill.png" style="margin-left: 10px;"
+        /></span>
+    <div class="email">
+      <label for="email">E-mail <img src="assets/icons/user.svg" /></label>
+      <input
+        type="email"
+        #email
+        id="email"
+        placeholder="example@CSED.com"
+        required
+      />
+    </div>
+    <div class="password">
+      <label for="password"
+        >Password <img src="assets/icons/password.svg"
+      /></label>
+      <input
+        type="password"
+        #pass
+        id="password"
+        placeholder="password"
+        required
+        minlength="8"
+      />
+    </div>
+    <div>
+      <button
+        class="btn btn1 btn-dark"
+        (click)="get_pass(pass.value)"
+        (click)="get_email(email.value)"
+        (click)="check()"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+
+  <div class="div1">
+    <label class="signup">Doesn't have an email ?</label>
+    <button class="btn btn2 btn-dark" routerLink="/signup">Sign-up</button>
+  </div>
+</div>

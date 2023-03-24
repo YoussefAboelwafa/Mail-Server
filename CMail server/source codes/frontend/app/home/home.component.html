@@ -1,0 +1,1219 @@
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+/>
+
+<div class="container">
+  <!-- Title bar -->
+  <div class="titlebar">
+    <nav class="navbar bg-primary">
+      <button
+        style="background: none; border: none"
+        (click)="show_mail('received', 'inbox')"
+        skipLocationChange="true"
+        routerLink="show/inbox"
+      >
+        <span style="color: azure; font-size: 38px"
+          ><span style="color: black; font-size: 42px; font-weight: 900">C</span
+          >-Mail<img src="assets/icons/gmaill.png"
+        /></span>
+      </button>
+      <span
+        style="
+          color: azure;
+          font-size: large;
+          border: 2px solid azure;
+          padding: 5px;
+          padding-left: 10px;
+          padding-right: 10px;
+          border-radius: 10px;
+        "
+        >{{ email }}</span
+      >
+      <button
+        title="Refresh page"
+        class="btn btn-dark refresh"
+        (click)="show_mail('received', 'inbox')"
+      >
+        <i
+          class="fa fa-rotate-right"
+          style="color: azure; font-weight: 900; font-size: x-large"
+        ></i>
+      </button>
+
+      <button
+        class="setting"
+        href="javascript:void(0)"
+        onclick="document.getElementById('id06').style.display='block'"
+      >
+        setting<i class="fa fa-gear"></i>
+      </button>
+    </nav>
+  </div>
+  <!-- Side bar -->
+  <div class="sidebar">
+    <ul>
+      <br />
+      <li class="newmessage">
+        <button
+          id="newmessage"
+          href="javascript:void(0)"
+          onclick="document.getElementById('id01').style.display='block'"
+        >
+          New message<i style="color: azure" class="fa fa-pen"></i>
+        </button>
+      </li>
+      <br />
+      <li [routerLinkActive]="'active'">
+        <button
+          (click)="show_mail('received', 'inbox')"
+          skipLocationChange="true"
+          routerLink="show/inbox"
+        >
+          Inbox<i class="fa fa-inbox"></i>
+          <span
+            class="position-absolute translate-middle rounded-pill badge text-bg-danger"
+            >{{ number_inbox }}</span
+          >
+        </button>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <button
+          skipLocationChange="true"
+          routerLink="show/contacts"
+          (click)="show_con('0')"
+        >
+          Contacts<i class="fa fa-address-book"></i>
+        </button>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <button
+          skipLocationChange="true"
+          routerLink="show/folders"
+          (click)="show_folder()"
+        >
+          Folders<i class="fa fa-folder-open"></i>
+        </button>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <button
+          (click)="show_mail('draft', 'draft')"
+          skipLocationChange="true"
+          routerLink="show/draft"
+        >
+          Draft<i class="fa fa-file"></i>
+        </button>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <button
+          (click)="show_mail('sent', 'sent')"
+          skipLocationChange="true"
+          routerLink="show/sent"
+        >
+          Sent<i class="fa fa-paper-plane"></i>
+        </button>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <button
+          (click)="show_mail('deleted', 'trash')"
+          skipLocationChange="true"
+          routerLink="show/trash"
+        >
+          Trash<i class="fa fa-trash"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <!-- MAIN -->
+  <div class="main" style="background-color: rgba(161, 205, 255, 0.4)">
+    <!-- Searching-sorting-filtering section-->
+    <div class="searching-sorting-filter" *ngIf="!show_fo && !show_contacts">
+      <div class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          style="border-radius: 10px; padding-left: 10px"
+          #info
+        />
+        <div class="searchdiv">
+          <select class="selectdropdown" #s1 id="s1" style="width: 115px">
+            <option value="select">search by</option>
+            <option value="date">Date</option>
+            <option value="sender">Sender</option>
+            <option value="reciever">Reciever</option>
+            <option value="priority">Priority</option>
+            <option value="subject">Subject</option>
+            <option value="content">Content</option>
+          </select>
+          <button
+            class="btn btn-dark searching-sorting-filter-button"
+            type="submit"
+            (click)="getselect_search(s1.value, info.value)"
+            
+
+          >
+            Search <i class="fa fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="sortdiv">
+        <select class="selectdropdown" #s2 id="s2">
+          <option value="select">sort by</option>
+          <option value="date">Date</option>
+          <option value="sender">Sender</option>
+          <option value="reciever">Reciever</option>
+          <option value="priority">Priority</option>
+          <option value="subject">Subject</option>
+          <option value="content">Content</option>
+        </select>
+        <button
+          class="btn btn-dark searching-sorting-filter-button"
+          (click)="getselect_sort(s2.value)"
+
+        >
+          Sort <i class="fa fa-arrow-down-wide-short"></i>
+        </button>
+      </div>
+
+      <div class="filterdiv">
+        <select class="selectdropdown" #s3 id="s3">
+          <option value="select">filter by</option>
+          <option value="sender">Sender</option>
+          <option value="subject">Subject</option>
+        </select>
+        <button
+          class="btn btn-dark searching-sorting-filter-button"
+          (click)="getselect_filter(s3.value)"
+
+        >
+          Filter <i class="fa fa-filter"></i>
+        </button>
+      </div>
+      <div class="deleteall">
+        <button
+          class="btn btn-dark"
+          title="Delete all"
+          (click)="d_all()"
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="tables">
+      <!-- Inbox -->
+      <table
+        *ngIf="show_inbox"
+        class="table table-dark table-bordered table-striped-columns table-hover"
+      >
+        <thead>
+          <tr>
+            <th scope="col" class="selectcol"></th>
+            <th scope="col" class="prioritycol">Priority</th>
+            <th scope="col" class="sendercol">Sender</th>
+            <th scope="col" class="datecol">Date</th>
+            <th scope="col" class="subjectcol">Subject</th>
+            <th scope="col" class="contentcol">Content</th>
+            <th scope="col" class="downloadcol">Attachment</th>
+            <th scope="col">Move to trash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mail of mails">
+            <td>
+              <input
+                title="Select"
+                type="checkbox"
+                name="selected"
+                (change)="onchange(mail.id)"
+              />
+              <a
+                title="Add to folders"
+                href="javascript:void(0)"
+                onclick="document.getElementById('id05').style.display='block'"
+                (click)="get_email_to_fo(mail)"
+                
+
+                ><i class="fa fa-folder-plus goldfolder"></i
+              ></a>
+              <a
+                title="Add to contacts"
+                href="javascript:void(0)"
+                (click)="set_email(mail.sender)"
+
+                onclick="document.getElementById('id02').style.display='block'"
+                ><i class="fa fa-user-plus greencontact"></i
+              ></a>
+            </td>
+            <td>{{ mail.priority }}</td>
+            <td>{{ mail.sender }}</td>
+            <td>
+              {{ mail.date }}
+            </td>
+            <td>
+              {{ mail.subject }}
+            </td>
+            <td>{{ mail.content }}</td>
+              <td *ngIf="mail.attachements.length!=0"><a
+                  class="download"
+                  href="javascript:void(0)"
+                  title="Download"
+                  onclick="document.getElementById('id08').style.display='block'"
+                  (click)="get_attach_todwon(mail)"
+                  >Download <i class="fa fa-download"></i
+                    ></a></td>
+                    <td *ngIf="mail.attachements.length==0"><label
+                      class="download"
+                      href="javascript:void(0)"
+                      title="Download"
+                      >No Attachments</label></td>
+
+            <td class="align-middle">
+              <a
+                href="javascript:void(0)"
+                title="Move to trash"
+                (click)="del_mail(mail, '1', 'none')"
+                ><i class="fa fa-trash redtrash"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- contacts -->
+      <div>
+        <div class="searching-sorting-filter" *ngIf="show_contacts">
+          <div class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              style="border-radius: 10px; padding-left: 10px"
+              #info
+            />
+            <div class="searchdiv">
+              <select class="selectdropdown" #sc1 id="s1" style="width: 115px">
+                <option value="select">search by</option>
+                <option value="date">Name</option>
+              </select>
+
+              <button
+                class="btn btn-dark searching-sorting-filter-button"
+                type="submit"
+                (click)="getselect_search(sc1.value, info.value)"
+
+              >
+                Search <i class="fa fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="sortdiv">
+            <select class="selectdropdown" #sc1 id="s2">
+              <option value="select">sort by</option>
+              <option value="date">Name</option>
+            </select>
+            <button
+              class="btn btn-dark searching-sorting-filter-button"
+              (click)="sort_contact(sc1)"
+            >
+              Sort <i class="fa fa-arrow-down-wide-short"></i>
+            </button>
+          </div>
+        </div>
+
+        <table
+          *ngIf="show_contacts"
+          style="width: 1300px"
+          class="table table-dark table-bordered table-striped-columns table-hover"
+        >
+          <thead>
+            <tr>
+              <th scope="col" class="selectcol" style="width: 50px"></th>
+              <th scope="col" class="namecol">Name</th>
+              <th scope="col" class="emailcol">Emails address</th>
+              <th scope="col" class="remove-contact-col">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contact of contacts">
+              <td>
+                <a
+                  title="Edit name"
+                  href="javascript:void(0)"
+                  onclick="document.getElementById('id03').style.display='block'"
+                  (click)="popup_edit(contact.contactMails, contact.id)"
+                  ><i class="fa fa-gear whiteedit"></i
+                ></a>
+                <a
+                  title="New message"
+                  href="javascript:void(0)"
+                  (click)="make_contact(contact.contactMails[0])"
+                  onclick="document.getElementById('id01').style.display='block'"
+                  ><i class="fa fa-pen-to-square bluemsg"></i>
+                </a>
+              </td>
+
+              <td>{{ contact.name }}</td>
+              <td>
+                {{ contact.contactMails }}
+              </td>
+
+              <td class="align-middle">
+                <a
+                  href="javascript:void(0)"
+                  title="Remove from contacts"
+                  (click)="delete_con(contact)"
+                  ><i class="fa fa-remove redtrash" style="font-size: 30px"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- folders -->
+      <div 
+       *ngIf="show_fo">
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            background-color: rgba(0, 0, 0, 0.7);
+          "
+        >
+          <div class="newfolderformclass">
+            <label for="foldername">Create new folder</label>
+            <input
+              #foldername
+              id="foldername"
+              class="w3-input"
+              type="text"
+              placeholder="Enter folder name"
+            />
+          </div>
+
+          <div style="margin-bottom: 0px">
+            <button
+              class="add-to-contacts-button btn btn-primary newfolderbuttonclass"
+              (click)="create_folder(foldername.value)"
+              
+            >
+              Create new folder
+              <i class="fa fa-plus" style="color: azure; font-size: 18px"></i>
+            </button>
+          </div>
+        </div>
+        <div class="foldersdiv" *ngFor="let fo of folder">
+          <label class="folderlabel"
+            >{{ fo }}
+            <a
+            title="Rename folder"
+              href="javascript:void(0)"
+              onclick="document.getElementById('id07').style.display='block'"
+              (click)="get_rename(fo)"
+              ><i class="fa fa-pen" style="color:#0056b3 ;"></i
+            ></a>
+            <a
+            title="Delete folder"
+              href="javascript:void(0)"
+              (click)="delete_folder(fo)"
+              ><i class="fa fa-trash redtrash"></i
+            ></a>
+            
+          </label>
+
+          <table
+            class="table table-dark table-bordered table-striped-columns table-hover"
+          >
+            <thead>
+              <tr>
+                <th scope="col" class="selectcol" style="width: 50px"></th>
+                <th scope="col" class="prioritycol">Priority</th>
+                <th scope="col" class="sendercol">Sender</th>
+                <th scope="col" class="datecol">Date</th>
+                <th scope="col" class="subjectcol">Subject</th>
+                <th scope="col" class="contentcol">Content</th>
+                <th scope="col" class="downloadcol">Attachment</th>
+                <th scope="col">Remove from folder</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let mail of hash_folder[fo]">
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selected"
+                    (change)="onchange(mail.id)"
+                  />
+                </td>
+                <td>{{ mail.priority }}</td>
+                <td>{{ mail.sender }}</td>
+                <td>
+                  {{ mail.date }}
+                </td>
+                <td>
+                  {{ mail.subject }}
+                </td>
+                <td>{{ mail.content }}</td>
+                <td *ngIf="mail.attachements.length!=0"><a
+                  class="download"
+                  href="javascript:void(0)"
+                  title="Download"
+                  onclick="document.getElementById('id08').style.display='block'"
+                  (click)="get_attach_todwon(mail)"
+                  >Download <i class="fa fa-download"></i
+                    ></a></td>
+                    <td *ngIf="mail.attachements.length==0"><label
+                      class="download"
+                      href="javascript:void(0)"
+                      title="Download"
+                      >No Attachments</label></td>
+
+                <td class="align-middle">
+                  <a
+                    href="javascript:void(0)"
+                    (click)="del_mail(mail, '0', fo)"
+                    (click)="del_mail(mail, '0', 'none')"
+                    ><i
+                      class="fa fa-remove redtrash"
+                      style="font-size: 30px"
+                    ></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Sent -->
+      <table
+        *ngIf="show_sent"
+        class="table table-dark table-bordered table-striped-columns table-hover"
+      >
+        <thead>
+          <tr>
+            <th scope="col" class="selectcol" style="width: 50px"></th>
+            <th scope="col" class="prioritycol">Priority</th>
+            <th scope="col" class="sendercol">Reciever</th>
+            <th scope="col" class="datecol">Date</th>
+            <th scope="col" class="subjectcol">Subject</th>
+            <th scope="col" class="contentcol">Content</th>
+            <th scope="col">Move to trash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mail of mails">
+            <td>
+              <input
+                type="checkbox"
+                name="selected"
+                (change)="onchange(mail.id)"
+              />
+            </td>
+            <td>{{ mail.priority }}</td>
+            <td>{{ mail.reciever }}</td>
+            <td>
+              {{ mail.date }}
+            </td>
+            <td>
+              {{ mail.subject }}
+            </td>
+            <td>{{ mail.content }}</td>
+            <td class="align-middle">
+              <a href="javascript:void(0)" (click)="del_mail(mail, '1', 'none')"  
+                ><i class="fa fa-trash redtrash"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Trash -->
+      <table
+        *ngIf="show_trash"
+        class="table table-dark table-bordered table-striped-columns table-hover"
+      >
+        <thead>
+          <tr>
+            <th scope="col" class="selectcol" style="width: 50px"></th>
+            <th scope="col" class="prioritycol">Priority</th>
+            <th scope="col" class="sendercol">Reciever</th>
+            <th scope="col" class="datecol">Date</th>
+            <th scope="col" class="subjectcol">Subject</th>
+            <th scope="col" class="contentcol">Content</th>
+            <th scope="col">Move to trash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mail of mails">
+            <td>
+              <input
+                type="checkbox"
+                name="selected"
+                (change)="onchange(mail.id)"
+              />
+            </td>
+            <td>{{ mail.priority }}</td>
+            <td>{{ mail.reciever }}</td>
+            <td>
+              {{ mail.date }}
+            </td>
+            <td>
+              {{ mail.subject }}
+            </td>
+            <td>{{ mail.content }}</td>
+            <td class="align-middle">
+              <a href="javascript:void(0)" (click)="totaly_remove(mail)"          
+              ><i class="fa fa-trash redtrash"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Draft -->
+      <table
+        *ngIf="show_draft"
+        class="table table-dark table-bordered table-striped-columns table-hover"
+      >
+        <thead>
+          <tr>
+            <th scope="col" class="selectcol" style="width: 100px"></th>
+            <th scope="col" class="prioritycol">Priority</th>
+            <th scope="col" class="sendercol">Reciever</th>
+            <th scope="col" class="datecol">Date</th>
+            <th scope="col" class="subjectcol">Subject</th>
+            <th scope="col" class="contentcol">Content</th>
+            <th scope="col">Move to trash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mail of mails">
+            <td>
+              <input
+                type="checkbox"
+                name="selected"
+                title="Select"
+                (change)="onchange(mail.id)"
+              />
+              <a
+                href="javascript:void(0)"
+                title="Complete draft"
+                onclick="document.getElementById('id04').style.display='block'"
+                (click)="popup_draft(mail)"
+                ><i class="fa fa-pen-to-square bluemsg"></i
+              ></a>
+            </td>
+            <td>{{ mail.priority }}</td>
+            <td>{{ mail.reciever }}</td>
+            <td>
+              {{ mail.date }}
+            </td>
+            <td>
+              {{ mail.subject }}
+            </td>
+            <td>{{ mail.content }}</td>
+            <td class="align-middle">
+              <a href="javascript:void(0)" (click)="del_mail(mail, '1', 'none')"   (click)="refresh()"
+
+                ><i class="fa fa-trash redtrash"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- New message pop-up -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>
+        Send Mail<i
+          class="fa fa-envelope"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="to">To :</label>
+      <input
+        #to
+        id="to"
+        class="w3-input"
+        type="text"
+        value="{{ send_to_contact }}"
+      />
+      <label for="from">From :</label>
+      <input
+        #from
+        id="from"
+        class="w3-input"
+        type="text"
+        disabled
+        placeholder="{{ email }}"
+      />
+      <label for="subject1">Subject :</label>
+      <input
+        #sub
+        id="subject1"
+        class="w3-input"
+        type="text"
+        maxlength="30"
+        placeholder="(0-30) characters"
+      />
+      <textarea
+        #content
+        class="messagebox w3-input"
+        placeholder="Message....."
+      ></textarea>
+
+      <div class="w3-section">
+        <div class="priorities">
+          <span
+            style="
+              color: azure;
+              font-size: 18px;
+              margin-right: 10px;
+              margin-bottom: 10px;
+            "
+            >Priority</span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p1"
+              value="1"
+              checked
+              #p1
+              (blur)="get_priority(p1.value)"
+            />
+            <label class="form-check-label" for="p1">1 (High)</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p2"
+              value="2"
+              #p2
+              (blur)="get_priority(p2.value)"
+            />
+            <label class="form-check-label" for="p2">2</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p3"
+              value="3"
+              #p3
+              (blur)="get_priority(p3.value)"
+            />
+            <label class="form-check-label" for="p3">3</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p4"
+              value="4"
+              #p4
+              (blur)="get_priority(p4.value)"
+            />
+            <label class="form-check-label" for="p4">4</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p5"
+              value="5"
+              checked
+              #p5
+              (blur)="get_priority(p5.value)"
+            />
+            <label class="form-check-label" for="p5">5 (Low)</label></span
+          >
+        </div>
+        <div>
+          <button
+            class="btn btn-dark draft"
+            onclick="document.getElementById('id01').style.display='none'"
+            (click)="addmail(to.value, sub.value, content.value, 'draft',attach.files)"
+
+          >
+            Save as draft <i class="fa fa-file"></i>
+          </button>
+        </div>
+        <div class="choosefile">
+          <label class="file attach" for="file"
+            >Attachment <i class="fa fa-paperclip"></i
+          ></label>
+          <input type="file" id="file" multiple #attach />
+        </div>
+        <div class="send">
+          <button
+            class="btn btn-primary"
+            onclick="document.getElementById('id01').style.display='none'"
+            (click)="addmail(to.value, sub.value, content.value, 'sent',attach.files)"
+          >
+            Send <i class="fa fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add to contact pop-up -->
+<div id="id02" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id02').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>
+        Add to contacts<i
+          class="fa fa-user-plus"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="contactname">Name :</label>
+      <input #contactname id="to" class="w3-input" type="text" />
+      <label for="contactemail">Email</label>
+      <input
+        id="contactemail"
+        class="w3-input"
+        type="text"
+        disabled
+        placeholder="{{ contact_mail }}"
+      />
+
+      <div>
+        <button
+          class="add-to-contacts-button btn btn-primary"
+          (click)="add_contact(contactname.value)"
+          onclick="document.getElementById('id02').style.display='none'"
+        >
+          Add to contacts
+          <i class="fa fa-plus" style="color: azure; font-size: 18px"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit name pop-up -->
+<div id="id03" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id03').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>
+        Edit contact<i
+          class="fa fa-gear"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="contactname">New name :</label>
+      <input #newname id="to" class="w3-input" type="text" />
+      <label for="contactemail">Email</label>
+      <input
+        id="contactemail"
+        class="w3-input"
+        type="text"
+        disabled
+        placeholder="{{ popup_email }}"
+      />
+
+      <div>
+        <button
+          class="add-to-contacts-button btn btn-primary"
+          (click)="edit_con(newname.value)"
+          (click)="refresh()"
+          onclick="document.getElementById('id03').style.display='none'"
+        >
+          Save
+          <i
+            class="fa fa-bookmark"
+            style="color: azure; font-size: 18px; margin-left: 5px"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Draft pop-up -->
+<div id="id04" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id04').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>
+        Send Mail<i
+          class="fa fa-envelope"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="to">To :</label>
+      <input
+        #to2
+        id="to"
+        class="w3-input"
+        type="text"
+        value="{{ draft_co.reciever }}"
+      />
+      <label for="from">From :</label>
+      <input
+        #from2
+        id="from"
+        class="w3-input"
+        type="text"
+        disabled
+        placeholder="{{ email }}"
+      />
+      <label for="subject1">Subject :</label>
+      <input
+        #sub2
+        id="subject1"
+        class="w3-input"
+        type="text"
+        maxlength="30"
+        placeholder="(0-30) characters"
+        value="{{ draft_co.subject }}"
+      />
+      <textarea
+        #content2
+        class="messagebox w3-input"
+        placeholder="Message....."
+        value="{{ draft_co.content }}"
+      ></textarea>
+
+      <div class="w3-section">
+        <div class="priorities">
+          <span
+            style="
+              color: azure;
+              font-size: 18px;
+              margin-right: 10px;
+              margin-bottom: 10px;
+            "
+            >Priority</span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p1"
+              value="1"
+              checked
+              #pd1
+              (blur)="get_priority(pd1.value)"
+            />
+            <label class="form-check-label" for="p1">1 (High)</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p2"
+              value="2"
+              #pd2
+              (blur)="get_priority(pd2.value)"
+            />
+            <label class="form-check-label" for="p2">2</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p3"
+              value="3"
+              checked
+              #pd3
+              (blur)="get_priority(pd3.value)"
+            />
+            <label class="form-check-label" for="p3">3</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p4"
+              value="4"
+              #pd4
+              (blur)="get_priority(pd4.value)"
+            />
+            <label class="form-check-label" for="p4">4</label></span
+          >
+          <span
+            ><input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="p5"
+              value="5"
+              #pd5
+              (blur)="get_priority(pd5.value)"
+            />
+            <label class="form-check-label" for="p5">5 (Low)</label></span
+          >
+        </div>
+        <div>
+          <button
+            class="btn btn-dark draft"
+            onclick="document.getElementById('id04').style.display='none'"
+
+            (click)="draft_to(to2.value, sub2.value, content2.value, 'draft',attach.files)"
+
+          >
+            Save as draft <i class="fa fa-file"></i>
+          </button>
+        </div>
+        <div class="choosefile">
+          <label class="file attach" for="file"
+            >Attachment <i class="fa fa-paperclip"></i
+          ></label>
+          <input type="file" id="file" multiple />
+        </div>
+        <div class="send">
+          <button
+            class="btn btn-primary"
+            onclick="document.getElementById('id01').style.display='none'"
+            (click)="draft_to(to2.value, sub2.value, content2.value, 'sent',attach.files)"
+
+          >
+            Send <i class="fa fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add to folders pop-up -->
+<div id="id05" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id05').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>
+        Folders<i
+          class="fa fa-folder-plus"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="foldername">Choose from folders:</label>
+
+      <!-- change to let folder of folders -->
+      <div class="choosefolders">
+        <select class="selectdropdown" #choosefolder id="choosefolder">
+          <option *ngFor="let fo of folder" value="{{ fo }}">
+            {{ fo }}
+          </option>
+        </select>
+        <button
+          class="btn btn-primary add-to-contacts-button"
+          onclick="document.getElementById('id05').style.display='none'"
+          (click)="add_to_folder(choosefolder.value)"
+
+        >
+          Add To Folder
+          <i class="fa fa-plus" style="color: azure; font-size: 18px"></i>
+        </button>
+      </div>
+
+      <div class="choosefolders">
+        <label><u style="color: azure">OR</u></label>
+        <label for="foldername">Create new folder</label>
+        <input #foldername id="foldername" class="w3-input" type="text" />
+        <button
+          class="add-to-contacts-button btn btn-primary"
+          onclick="document.getElementById('id05').style.display='none'"
+          (click)="create_folder(foldername.value)"
+          (click)="add_to_folder(foldername.value)"
+        >
+          Create Folder
+          <i class="fa fa-plus" style="color: azure; font-size: 18px"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Setting pop-up -->
+<div id="id06" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id06').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>
+        Setting<i
+          class="fa fa-gear"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <div>
+        <input
+          #newemail
+          id="new email"
+          placeholder="example@CSED.com"
+          class="w3-input"
+          type="text"
+        />
+        <button
+          class="add-to-contacts-button btn btn-primary"
+          onclick="document.getElementById('id06').style.display='none'"
+          (click)="add_acoount(newemail.value)"
+        >
+          Add another account
+          <i class="fa fa-user-plus" style="color: azure; font-size: 18px"></i>
+        </button>
+      </div>
+      <div>
+        <button
+          class="add-to-contacts-button btn btn-secondary"
+          onclick="document.getElementById('id06').style.display='none'"
+          (click)="logout()"
+          routerLink="/login"
+          skipLocationChange="true"
+        >
+          Log out
+          <i
+            class="fa fa-right-from-bracket"
+            style="color: azure; font-size: 18px"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit folder name pop-up -->
+<div id="id07" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id07').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>
+        Edit folder name<i
+          class="fa fa-pen"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="newfoldername">New name :</label>
+      <input #newfoldername id="newfoldername" class="w3-input" type="text" placeholder="Enter new folder name" />
+      
+
+      <div>
+        <button
+          class="add-to-contacts-button btn btn-primary"
+          onclick="document.getElementById('id07').style.display='none'"
+          (click)="rename_folder(newfoldername.value)"
+
+        >
+          Save
+          <i
+            class="fa fa-bookmark"
+            style="color: azure; font-size: 18px; margin-left: 5px"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Download pop-up -->
+<div id="id08" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container w3-padding">
+      <span
+        onclick="document.getElementById('id08').style.display='none'"
+        class="w3-right w3-xxlarge"
+        ><i class="fa fa-remove"></i
+      ></span>
+      <h2>Download attachment<i
+          class="fa fa-download"
+          style="margin-left: 10px; font-size: 40px; color: black"
+        ></i>
+      </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="newfoldername">Enter download location path :</label>
+      <input #path id="newfoldername" class="w3-input" type="text" placeholder="Enter path" />
+      
+
+      <div>
+        <button
+          class="add-to-contacts-button btn btn-primary"
+          onclick="document.getElementById('id08').style.display='none'"
+          (click)="download_attach(path.value)"
+
+        >
+          Download
+          <i
+            class="fa fa-down-long"
+            style="color: azure; font-size: 18px; margin-left: 5px"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
